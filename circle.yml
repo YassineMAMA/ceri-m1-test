@@ -9,7 +9,7 @@ dependencies:
 
 test:
   override:
-    - mvn test fr/univavignon/pokedex/api/suite
+    - mvn test -Dtest=TestSuiteWithMock
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
