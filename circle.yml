@@ -3,15 +3,3 @@ machine:
   java:
     version: openjdk8
     
-
-## Customize deployment commands
-deployment:
-  staging:
-    branch: master
-
-dependencies:
-  override:
-    - java -XX:+PrintFlagsFinal -version
-    - mvn --version
-    - mvn clean 
-    - mvn test-compile
