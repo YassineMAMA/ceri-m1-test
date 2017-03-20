@@ -1,9 +1,8 @@
 package fr.univavignon.pokedex.api;
 
-import static org.junit.gen5.api.Assertions.assertEquals;
+import static org.junit.Assert.*;
 
-import org.junit.gen5.api.Test;
-
+import org.junit.Test;
 public class IPokemonFactoryTest {
 
 	@Test

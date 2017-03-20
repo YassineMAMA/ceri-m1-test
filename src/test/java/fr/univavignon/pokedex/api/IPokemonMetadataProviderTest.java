@@ -1,41 +1,80 @@
 package fr.univavignon.pokedex.api;
 
-import static org.junit.gen5.api.Assertions.assertEquals;
+import static org.junit.Assert.*;
 
-import org.junit.gen5.api.BeforeAll;
-import org.junit.gen5.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 import org.mockito.runners.MockitoJUnitRunner;
 
 public class IPokemonMetadataProviderTest {
 	
-	@Mock Pokemon pokemonMock;
-	//@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
+	private PokemonMetadata pokemonMetadataMockBulbizarre;
+	private PokemonMetadata pokemonMetadataMockAquali;
+	@Mock private IPokemonMetadataProvider IPokemonMetadataProviderMock;
+	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 	
-	@BeforeAll
-    public void setUp() {
-		this.pokemonMock = Mockito.mock(Pokemon.class);
-		when(pokemonMock.getIndex()).thenReturn(0);
-		when(pokemonMock.getName()).thenReturn("Bulbizarre");
-		when(pokemonMock.getCp()).thenReturn(613);
-		when(pokemonMock.getHp()).thenReturn(64);
-		when(pokemonMock.getDust()).thenReturn(4);
-		when(pokemonMock.getAttack()).thenReturn(126);
-		when(pokemonMock.getDefense()).thenReturn(126);
-		when(pokemonMock.getStamina()).thenReturn(90);
-		when(pokemonMock.getIv()).thenReturn(new Double(56));
+	@Before
+    public void setUp()  {
+		
+		pokemonMetadataMockBulbizarre = new PokemonMetadata(0, "Bulbizarre", 126, 126, 90);
+		pokemonMetadataMockAquali = new PokemonMetadata(133, "Aquali", 186, 168, 260);
+		
+		//IPokemonMetadataProviderMock = Mockito.mock(IPokemonMetadataProvider.class);
+	
+		when(IPokemonMetadataProviderMock.getPokemonMetadata(0)).thenReturn(pokemonMetadataMockBulbizarre);
+		
+		
+	
+		when(IPokemonMetadataProviderMock.getPokemonMetadata(133)).thenReturn(pokemonMetadataMockAquali);
+	
+		
+		/*try {
+			//doThrow(new PokedexException("no")).when(IPokemonMetadataProviderMock.getPokemonMetadata(-1));
+		} catch (PokedexException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
     }
 
 	@Test
-	public void testInit() {
-		assertEquals(pokemonMock.getName(), "Bulbizarre");
-		//IPokemon a = new IPokemon();
+	public void testGetBulbizarre() {
+		try {
+			assertEquals(IPokemonMetadataProviderMock.getPokemonMetadata(0), pokemonMetadataMockBulbizarre);
+		} catch (PokedexException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test(expected=PokedexException.class)
+	public void testPokedexException()   {
+		
+		
+			/*try {
+				IPokemonMetadataProviderMock.getPokemonMetadata(133);
+			} catch (PokedexException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
+	
+		assertEquals(1, 1);
+	}
+	
+	@Test(expected=IndexOutOfBoundsException.class)
+	public void testIndexOutOfBoundsException() {
+	    ArrayList emptyList = new ArrayList();
+	    Object o = emptyList.get(0);
 	}
 
 }
