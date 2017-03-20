@@ -25,7 +25,7 @@ public class IPokemonMetadataProviderTest {
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 	
 	@Before
-    public void setUp()  {
+    public void setUp() throws PokedexException  {
 		
 		pokemonMetadataMockBulbizarre = new PokemonMetadata(0, "Bulbizarre", 126, 126, 90);
 		pokemonMetadataMockAquali = new PokemonMetadata(133, "Aquali", 186, 168, 260);
@@ -33,11 +33,11 @@ public class IPokemonMetadataProviderTest {
 		//IPokemonMetadataProviderMock = Mockito.mock(IPokemonMetadataProvider.class);
 	
 		when(IPokemonMetadataProviderMock.getPokemonMetadata(0)).thenReturn(pokemonMetadataMockBulbizarre);
-		
-		
-	
 		when(IPokemonMetadataProviderMock.getPokemonMetadata(133)).thenReturn(pokemonMetadataMockAquali);
 	
+		
+		when(IPokemonMetadataProviderMock.getPokemonMetadata(-1)).thenThrow(new PokedexException("no"));
+		
 		
 		/*try {
 			//doThrow(new PokedexException("no")).when(IPokemonMetadataProviderMock.getPokemonMetadata(-1));
@@ -58,17 +58,12 @@ public class IPokemonMetadataProviderTest {
 	}
 	
 	@Test(expected=PokedexException.class)
-	public void testPokedexException()   {
+	public void testPokedexException() throws PokedexException   {
 		
 		
-			/*try {
-				IPokemonMetadataProviderMock.getPokemonMetadata(133);
-			} catch (PokedexException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}*/
-	
-		assertEquals(1, 1);
+		
+		IPokemonMetadataProviderMock.getPokemonMetadata(-1);
+			
 	}
 	
 	@Test(expected=IndexOutOfBoundsException.class)
