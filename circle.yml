@@ -3,3 +3,12 @@ machine:
   java:
     version: openjdk8
     
+deployment:
+  staging:
+    branch: master
+    
+dependencies:
+  override:
+    - mvn clean 
+    - mvn test-compile
+    
