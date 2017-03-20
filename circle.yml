@@ -1,21 +1,17 @@
 ## Customize the test machine
 machine:
-	java:
-		version: openjdk8
-	# Set the timezone
-	timezone:
-    	Europe/Paris 
+  java:
+    version: openjdk8
     
-   
-    
+
 ## Customize deployment commands
 deployment:
-	staging:
-		branch: master
+  staging:
+    branch: master
 
 dependencies:
-	override:
-		- java -XX:+PrintFlagsFinal -version
-		- mvn --version
-		- mvn clean 
-		- mvn test-compile
+  override:
+    - java -XX:+PrintFlagsFinal -version
+    - mvn --version
+    - mvn clean 
+    - mvn test-compile
