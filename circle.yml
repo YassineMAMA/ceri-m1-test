@@ -3,12 +3,15 @@ machine:
   java:
     version: oraclejdk8
     
-deployment:
-  staging:
-    branch: master
-    
 dependencies:
   override:
     - mvn clean 
     - mvn test-compile
+
+general:
+  branches:
+    only:
+      - master # list of branches to build
+    
+
     
