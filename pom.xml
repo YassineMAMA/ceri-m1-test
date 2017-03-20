@@ -9,13 +9,18 @@
 
   <name>TP-pekemon</name>
   <url>http://maven.apache.org</url>
-
+  
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <testSourceDirectory>src/test/java</testSourceDirectory>
   </properties>
+  
+  <build>
+   <testSourceDirectory>src/test/java</testSourceDirectory>
+  </build>
+
+
 
   <dependencies>
 	<dependency>
