@@ -5,8 +5,12 @@ machine:
     
 dependencies:
   override: 
-    - mvn test
+    - mvn clean
 
+test:
+ override:
+  - mvn test
+  
 general:
   branches:
     only:
