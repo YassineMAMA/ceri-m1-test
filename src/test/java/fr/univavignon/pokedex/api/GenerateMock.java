@@ -1,13 +1,8 @@
 package fr.univavignon.pokedex.api;
 
-import org.mockito.Mockito;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
-
+//TODO
 public class GenerateMock {
-	private static Pokemon pokemonMock;
+	//private static Pokemon pokemonMock;
 
 	/*public static Pokemon getPokemon(){
 		
