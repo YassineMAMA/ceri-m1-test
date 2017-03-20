@@ -7,7 +7,7 @@ import org.junit.gen5.api.Test;
 public class IPokemonFactoryTest {
 
 	@Test
-	public void test() {
+	public void testInit() {
 		assertEquals(2, 2);
 	}
 

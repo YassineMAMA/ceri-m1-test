@@ -7,7 +7,7 @@ import org.junit.gen5.api.Test;
 public class IPokemonMetadataProviderTest {
 
 	@Test
-	public void test() {
+	public void testInit() {
 		assertEquals(1, 1);
 	}
 
