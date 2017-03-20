@@ -4,9 +4,8 @@ machine:
     version: oraclejdk8
     
 dependencies:
-  override:
-    - mvn clean 
-    - mvn test-compile
+  override: 
+    - mvn test
 
 general:
   branches:
