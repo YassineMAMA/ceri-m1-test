@@ -5,11 +5,11 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
@@ -19,11 +19,8 @@ public class IPokedexTest {
 
 	private int size;
 	private int indice;
-	private Answer<Object> answerSize;
-	private Answer<Object> answerIndice;
-
-	@Mock
-	private IPokedex IPokedexTestMock;
+	private Answer<Object> answerSize;//answer for the size
+	private Answer<Object> answerIndice;//answer for the indice
 
 	Pokemon pokemonBulbizarre;
 	Pokemon pokemonAquali;
@@ -31,20 +28,22 @@ public class IPokedexTest {
 	List<Pokemon> pokemonListByIndex;
 	List<Pokemon> pokemonListByCp;
 
-	@Rule
-	public MockitoRule mockitoRule = MockitoJUnit.rule();
+	@Mock private IPokedex iPokedexTest;
+	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
 	// TODO
 	@Before
 	public void setUp() throws PokedexException {
-
+		MockitoAnnotations.initMocks(this);
+		
+		//create answer for the size
 		size = 0;
 		answerSize = new Answer<Object>() {
 			public Object answer(InvocationOnMock invocation) {
 				return size;
 			}
 		};
-
+		//create answer for the indice
 		indice = -1;
 		answerIndice = new Answer<Object>() {
 			public Object answer(InvocationOnMock invocation) {
@@ -57,29 +56,32 @@ public class IPokedexTest {
 		pokemonAquali = new Pokemon(133, "Aquali", 186, 168, 260, 2729, 202, 5000, 4, 100);
 
 		// create Answer for size() method
-		when(IPokedexTestMock.size()).thenAnswer(answerSize);
+		when(iPokedexTest.size()).thenAnswer(answerSize);
 
 		// create Answer for addPokemon() method with indice
-		when(IPokedexTestMock.addPokemon(pokemonAquali)).thenAnswer(answerIndice);
-		when(IPokedexTestMock.addPokemon(pokemonBulbizarre)).thenAnswer(answerIndice);
+		when(iPokedexTest.addPokemon(pokemonAquali)).thenAnswer(answerIndice);
+		when(iPokedexTest.addPokemon(pokemonBulbizarre)).thenAnswer(answerIndice);
 		
-		when(IPokedexTestMock.getPokemon(0)).thenReturn(pokemonBulbizarre);
-		when(IPokedexTestMock.getPokemon(1)).thenReturn(pokemonAquali);
-		when(IPokedexTestMock.getPokemon(-1)).thenThrow(new PokedexException("No pokemon find at -1"));
+		when(iPokedexTest.getPokemon(0)).thenReturn(pokemonBulbizarre);
+		when(iPokedexTest.getPokemon(1)).thenReturn(pokemonAquali);
+		when(iPokedexTest.getPokemon(-1)).thenThrow(new PokedexException("No pokemon find at -1"));
 		
+		//create list for NAME
 		pokemonListByName = new ArrayList<Pokemon>();
 		pokemonListByName.add(pokemonAquali);
 		pokemonListByName.add(pokemonBulbizarre);
-		when(IPokedexTestMock.getPokemons(PokemonComparators.NAME)).thenReturn(pokemonListByName);
+		when(iPokedexTest.getPokemons(PokemonComparators.NAME)).thenReturn(pokemonListByName);
 		
+		//create list for INDEX
 		pokemonListByIndex = new ArrayList<Pokemon>();
 		pokemonListByIndex.add(pokemonBulbizarre);
 		pokemonListByIndex.add(pokemonAquali);
-		when(IPokedexTestMock.getPokemons()).thenReturn(pokemonListByIndex);
-		when(IPokedexTestMock.getPokemons(PokemonComparators.INDEX)).thenReturn(pokemonListByIndex);
+		when(iPokedexTest.getPokemons()).thenReturn(pokemonListByIndex);
+		when(iPokedexTest.getPokemons(PokemonComparators.INDEX)).thenReturn(pokemonListByIndex);
 		
+		//list for CP
 		pokemonListByCp = pokemonListByName;//on fait pointer vers une liste identique
-		when(IPokedexTestMock.getPokemons(PokemonComparators.CP)).thenReturn(pokemonListByCp);
+		when(iPokedexTest.getPokemons(PokemonComparators.CP)).thenReturn(pokemonListByCp);
 	}
 
 	@Test
@@ -91,18 +93,18 @@ public class IPokedexTest {
 	@Test
 	public void testSizePokedex() {
 		// before size=0
-		assertEquals(size, IPokedexTestMock.size());
+		assertEquals(size, iPokedexTest.size());
 		addNewPokemon(pokemonBulbizarre);
 		// before size=1
-		assertEquals(1, IPokedexTestMock.size());
+		assertEquals(1, iPokedexTest.size());
 		addNewPokemon(pokemonAquali);
 		// before size=2
-		assertEquals(2, IPokedexTestMock.size());
+		assertEquals(2, iPokedexTest.size());
 	}
 	
 	@Test
 	public void testGetPokemon() throws PokedexException {
-		Pokemon bul = IPokedexTestMock.getPokemon(0);
+		Pokemon bul = iPokedexTest.getPokemon(0);
 		
 		assertEquals(pokemonBulbizarre.getAttack(), bul.getAttack());
 		assertEquals(pokemonBulbizarre.getDefense(), bul.getDefense());
@@ -116,7 +118,7 @@ public class IPokedexTest {
 		assertEquals(pokemonBulbizarre.getHp(), bul.getHp());
 		
 		
-		Pokemon aqu = IPokedexTestMock.getPokemon(1);
+		Pokemon aqu = iPokedexTest.getPokemon(1);
 		
 		assertEquals(pokemonAquali.getAttack(), aqu.getAttack());
 		assertEquals(pokemonAquali.getDefense(), aqu.getDefense());
@@ -132,12 +134,12 @@ public class IPokedexTest {
 	
 	@Test(expected=PokedexException.class)
 	public void testPokedexException() throws PokedexException   {
-		IPokedexTestMock.getPokemon(-1);	
+		iPokedexTest.getPokemon(-1);	
 	}
 		
 	@Test
 	public void testGetPokemons() throws PokedexException {
-		List<Pokemon> list = IPokedexTestMock.getPokemons();
+		List<Pokemon> list = iPokedexTest.getPokemons();
 		Pokemon bul = list.get(0);
 		
 		assertEquals(pokemonBulbizarre.getAttack(), bul.getAttack());
@@ -168,9 +170,9 @@ public class IPokedexTest {
 	
 	@Test
 	public void testGetPokemonsComparator() throws PokedexException {
-		List<Pokemon> listName = IPokedexTestMock.getPokemons(PokemonComparators.NAME);
-		List<Pokemon> listIndex = IPokedexTestMock.getPokemons(PokemonComparators.INDEX);
-		List<Pokemon> listCp = IPokedexTestMock.getPokemons(PokemonComparators.CP);
+		List<Pokemon> listName = iPokedexTest.getPokemons(PokemonComparators.NAME);
+		List<Pokemon> listIndex = iPokedexTest.getPokemons(PokemonComparators.INDEX);
+		List<Pokemon> listCp = iPokedexTest.getPokemons(PokemonComparators.CP);
 		
 		//verify size of lists
 		assertEquals(listName.size(), listIndex.size());
@@ -183,21 +185,19 @@ public class IPokedexTest {
 			assertEquals(pokemonListByIndex.get(i).getIndex(), listIndex.get(i).getIndex());
 			assertEquals(pokemonListByCp.get(i).getCp(), listCp.get(i).getCp());
 		}
-		
 	}
 	
 	
 	/**
-	 * Method for add Pokemon and change the size
+	 * Method for add Pokemon and change the size and the indice
 	 * 
 	 * @param p
 	 * @return
 	 */
 	public int addNewPokemon(Pokemon p) {
-		int id = IPokedexTestMock.addPokemon(p);
+		int id = iPokedexTest.addPokemon(p);
 		size++;
 		indice++;
 		return id;
 	}
-
 }

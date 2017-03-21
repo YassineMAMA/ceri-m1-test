@@ -7,29 +7,34 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
+
 public class IPokemonFactoryTest {
 	
 	Pokemon pokemonBulbizarre;
 	Pokemon pokemonAquali;
 	
-	@Mock private IPokemonFactory IPokemonFactoryMock;
+	@Mock private IPokemonFactory iPokemonFactory;
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 	
 	@Before
     public void setUp() throws PokedexException  {
+		MockitoAnnotations.initMocks(this);
 		
+		//create 2 pokemons
 		pokemonBulbizarre = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 56);
 		pokemonAquali = new Pokemon(133, "Aquali", 186, 168, 260, 2729, 202, 5000, 4, 100);
 	
-		when(IPokemonFactoryMock.createPokemon(0, 613, 64, 4000, 4)).thenReturn(pokemonBulbizarre);
-		when(IPokemonFactoryMock.createPokemon(133, 2729, 202, 5000, 4)).thenReturn(pokemonAquali);
+		//create return
+		when(iPokemonFactory.createPokemon(0, 613, 64, 4000, 4)).thenReturn(pokemonBulbizarre);
+		when(iPokemonFactory.createPokemon(133, 2729, 202, 5000, 4)).thenReturn(pokemonAquali);
     }
 
 	@Test
 	public void testGetBulbizarre()  {
-		Pokemon bul = IPokemonFactoryMock.createPokemon(0, 613, 64, 4000, 4);
+		Pokemon bul = iPokemonFactory.createPokemon(0, 613, 64, 4000, 4);
 		
 		assertEquals(pokemonBulbizarre.getAttack(), bul.getAttack());
 		assertEquals(pokemonBulbizarre.getDefense(), bul.getDefense());
@@ -41,13 +46,11 @@ public class IPokemonFactoryTest {
 		assertEquals(pokemonBulbizarre.getCp(), bul.getCp());
 		assertEquals(pokemonBulbizarre.getDust(), bul.getDust());
 		assertEquals(pokemonBulbizarre.getHp(), bul.getHp());
-
-	
 	}
 	
 	@Test
 	public void testGetAquali() {
-		Pokemon aqu = IPokemonFactoryMock.createPokemon(133, 2729, 202, 5000, 4);
+		Pokemon aqu = iPokemonFactory.createPokemon(133, 2729, 202, 5000, 4);
 		
 		assertEquals(pokemonAquali.getAttack(), aqu.getAttack());
 		assertEquals(pokemonAquali.getDefense(), aqu.getDefense());
@@ -60,5 +63,4 @@ public class IPokemonFactoryTest {
 		assertEquals(pokemonAquali.getDust(), aqu.getDust());
 		assertEquals(pokemonAquali.getHp(), aqu.getHp());
 	}
-
 }

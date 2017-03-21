@@ -7,28 +7,29 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
 public class IPokedexFactoryTest {
 	
-	@Mock private IPokemonFactory pokemonFactoryMock;
-	@Mock private IPokemonMetadataProvider IPokemonMetadataProviderMock;
-	@Mock private IPokedexFactory IPokedexFactoryMock;
+	@Mock private IPokemonFactory pokemonFactory;
+	@Mock private IPokemonMetadataProvider iPokemonMetadataProvider;
+	@Mock private IPokedexFactory iPokedexFactory;
+	@Mock private IPokedex iPokedex;
 	
-	@Mock private IPokedex IPokedexMock;
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 	
 	@Before
     public void setUp() throws PokedexException  {
-		when(IPokedexFactoryMock.createPokedex(IPokemonMetadataProviderMock, pokemonFactoryMock)).thenReturn(IPokedexMock);
+		MockitoAnnotations.initMocks(this);
+		
+		when(iPokedexFactory.createPokedex(iPokemonMetadataProvider, pokemonFactory)).thenReturn(iPokedex);
     }
 
 	@Test
 	public void testCreatePokedex()  {
-		//verifie que l'objet est non null
-		assertNotNull(IPokedexFactoryMock.createPokedex(IPokemonMetadataProviderMock, pokemonFactoryMock));
+		//verify object is not null
+		assertNotNull(iPokedexFactory.createPokedex(iPokemonMetadataProvider, pokemonFactory));
 	}
-	
-
 }
