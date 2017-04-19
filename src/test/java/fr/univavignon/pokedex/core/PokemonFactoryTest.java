@@ -1,5 +1,5 @@
 package fr.univavignon.pokedex.core;
-
+/*
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
@@ -13,7 +13,7 @@ import org.mockito.junit.MockitoRule;
 
 import fr.univavignon.pokedex.api.IPokemonFactoryTest;
 import fr.univavignon.pokedex.api.PokedexException;
-/*
+
 public class PokemonFactoryTest extends IPokemonFactoryTest {
 	
 
