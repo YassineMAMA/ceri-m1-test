@@ -1,9 +1,8 @@
 # BRUGEL Adrien (Cla)
 
-
 [![CircleCI](https://circleci.com/gh/St7s/ceri-m1-test.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/St7s/ceri-m1-test)
 
-____________________________________________________________TEST
-+ **Test/Code Coverage** - [![codecov.io Code Coverage](https://img.shields.io/codecov/c/github/dwyl/hapi-auth-jwt2.svg?maxAge=2592000)](https://codecov.io/github/dwyl/hapi-auth-jwt2?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce12b07fee33488db02392df54f0f00a)](https://www.codacy.com/app/St7s/ceri-m1-test?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=St7s/ceri-m1-test&amp;utm_campaign=Badge_Grade)
 
-- [Slide cours](https://github.com/Faylixe/ceri-m1-test/blob/resources/Technique%20de%20tests.pdf)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/ce12b07fee33488db02392df54f0f00a)](https://www.codacy.com/app/St7s/ceri-m1-test?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=St7s/ceri-m1-test&amp;utm_campaign=Badge_Coverage)
+
