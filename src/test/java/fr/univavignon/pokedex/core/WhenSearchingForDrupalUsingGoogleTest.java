@@ -15,31 +15,33 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 import io.github.bonigarcia.wdm.PhantomJsDriverManager;
 
+
+
 public class WhenSearchingForDrupalUsingGoogleTest {
-	private String baseUrl;
+	
 	private WebDriver driver;
 
 	@BeforeClass
 	public static void setupClass() {
-		PhantomJsDriverManager.getInstance().setup(); //PhantomJs car inutile de faire du chrome sur CircleCI
+		PhantomJsDriverManager.getInstance().useTaobaoMirror().setup(); //PhantomJs car inutile de faire du chrome sur CircleCI
 	}
 
 	@Before
 	public void openBrowser() {
-		baseUrl = "https://pokeassistant.com/main/ivcalculator?locale=en";
+		final String baseUrl = "https://pokeassistant.com/main/ivcalculator?locale=en";
 		driver = new PhantomJSDriver();
 		driver.get(baseUrl);
 	}
 
 	@After
-	public void saveScreenshotAndCloseBrowser() throws IOException {
+	public void after() throws IOException {
 		if (driver != null) {
 			driver.quit();
 		}
 	}
 
 	@Test
-	public void pageTitleAfterSearchShouldBeginWithDrupal() throws IOException {
+	public void pageTitleAfterSearchShouldBeginWithDrupal() {
 		System.out.println("Beggin");
 
 		((WebElement) driver.findElement(By.xpath("//*[@id=\"search_pokemon_name\"]"))).sendKeys("Bulbasaur");
