@@ -104,4 +104,22 @@ public final class Pokemon extends PokemonMetadata {
 		return iv;
 	}
 	
+	/**
+	 * surchage du toString
+	 */
+	@Override
+	public String toString(){
+		return  "Name:"+this.getName()+"_"+
+				"Attack"+this.getAttack()+"_"+
+				"Candy:"+this.getCandy()+"_"+
+				"Cp:"+this.getCp()+"_"+
+				"Defens:"+this.getDefense()+"_"+
+				"Dust:"+this.getDust()+"_"+
+				"Hp:"+this.getHp()+"_"+
+				"Index:"+this.getIndex()+"_"+
+				"Iv:"+this.getIv()+"_"+
+				"Stamina:"+this.getStamina()+"_";
+		
+	}
+	
 }

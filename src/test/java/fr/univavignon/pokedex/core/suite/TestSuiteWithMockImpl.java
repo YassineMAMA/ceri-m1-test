@@ -3,8 +3,8 @@ package fr.univavignon.pokedex.core.suite;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+import fr.univavignon.pokedex.core.PokemonFactoryTest;
 import fr.univavignon.pokedex.core.PokemonMetadataProviderTest;
-import fr.univavignon.pokedex.core.WhenSearchingForDrupalUsingGoogleTest;
 
 @RunWith(Suite.class)
 
@@ -13,8 +13,9 @@ import fr.univavignon.pokedex.core.WhenSearchingForDrupalUsingGoogleTest;
  * @author adrie
  *
  */
-@Suite.SuiteClasses({PokemonMetadataProviderTest.class, 
-					WhenSearchingForDrupalUsingGoogleTest.class
+@Suite.SuiteClasses({PokemonMetadataProviderTest.class,
+				PokemonFactoryTest.class
+					
 })
 
 public class TestSuiteWithMockImpl { }

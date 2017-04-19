@@ -29,44 +29,95 @@ public class IPokemonFactoryTest {
 		MockitoAnnotations.initMocks(this);
 		
 		//create 2 pokemons
-		pokemonBulbizarre = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 56);
-		pokemonAquali = new Pokemon(133, "Aquali", 186, 168, 260, 2729, 202, 5000, 4, 100);
+		pokemonBulbizarre = new Pokemon(0, "Bulbasaur", 126, 126, 90, 613, 64, 4000, 4, 56);
+		pokemonAquali = new Pokemon(133, "Vaporeon", 186, 168, 260, 1984, 172, 3500, 4, 69);
 	
 	
 		//create return
 		when(iPokemonFactory.createPokemon(0, 613, 64, 4000, 4)).thenReturn(pokemonBulbizarre);
-		when(iPokemonFactory.createPokemon(133, 2729, 202, 5000, 4)).thenReturn(pokemonAquali);
+		when(iPokemonFactory.createPokemon(133, 1984, 172, 3500, 4)).thenReturn(pokemonAquali);
     }
 
 	@Test
 	public void testGetBulbizarre()  {
 		Pokemon bul = iPokemonFactory.createPokemon(0, 613, 64, 4000, 4);
 		
-		assertEquals(pokemonBulbizarre.getAttack(), bul.getAttack());
-		assertEquals(pokemonBulbizarre.getDefense(), bul.getDefense());
-		assertEquals(pokemonBulbizarre.getIndex(), bul.getIndex());
-		assertEquals(pokemonBulbizarre.getName(), bul.getName());
-		assertEquals(pokemonBulbizarre.getStamina(), bul.getStamina());
-		assertEquals(pokemonBulbizarre.getIv(), bul.getIv(), 0.001);
-		assertEquals(pokemonBulbizarre.getCandy(), bul.getCandy());
-		assertEquals(pokemonBulbizarre.getCp(), bul.getCp());
-		assertEquals(pokemonBulbizarre.getDust(), bul.getDust());
-		assertEquals(pokemonBulbizarre.getHp(), bul.getHp());
+		
+		assertEquals(126, bul.getAttack());
+		assertEquals(126, bul.getDefense());
+		assertEquals(0, bul.getIndex());
+		assertEquals("Bulbasaur", bul.getName());
+		assertEquals(90, bul.getStamina());
+		assertEquals(56, bul.getIv(), 0.001);
+		assertEquals(4, bul.getCandy());
+		assertEquals(613, bul.getCp());
+		assertEquals(4000, bul.getDust());
+		assertEquals(64, bul.getHp());
 	}
+	
 	
 	@Test
 	public void testGetAquali() {
-		Pokemon aqu = iPokemonFactory.createPokemon(133, 2729, 202, 5000, 4);
+		Pokemon aqu = iPokemonFactory.createPokemon(133, 1984, 172, 3500, 4);
 		
-		assertEquals(pokemonAquali.getAttack(), aqu.getAttack());
-		assertEquals(pokemonAquali.getDefense(), aqu.getDefense());
-		assertEquals(pokemonAquali.getIndex(), aqu.getIndex());
-		assertEquals(pokemonAquali.getName(), aqu.getName());
-		assertEquals(pokemonAquali.getStamina(), aqu.getStamina());
-		assertEquals(pokemonAquali.getIv(), aqu.getIv(), 0.001);
-		assertEquals(pokemonAquali.getCandy(), aqu.getCandy());
-		assertEquals(pokemonAquali.getCp(), aqu.getCp());
-		assertEquals(pokemonAquali.getDust(), aqu.getDust());
-		assertEquals(pokemonAquali.getHp(), aqu.getHp());
+		assertEquals(186, aqu.getAttack());
+		assertEquals(168, aqu.getDefense());
+		assertEquals(133, aqu.getIndex());
+		assertEquals("Vaporeon", aqu.getName());
+		assertEquals(260, aqu.getStamina());
+		assertEquals(69, aqu.getIv(), 0.001);
+		assertEquals(4, aqu.getCandy());
+		assertEquals(1984, aqu.getCp());
+		assertEquals(3500, aqu.getDust());
+		assertEquals(172, aqu.getHp());
+	}
+
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Pokemon getPokemonBulbizarre() {
+		return pokemonBulbizarre;
+	}
+
+	/**
+	 * 
+	 * @param pokemonBulbizarre
+	 */
+	public void setPokemonBulbizarre(Pokemon pokemonBulbizarre) {
+		this.pokemonBulbizarre = pokemonBulbizarre;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public Pokemon getPokemonAquali() {
+		return pokemonAquali;
+	}
+
+	/**
+	 * 
+	 * @param pokemonAquali
+	 */
+	public void setPokemonAquali(Pokemon pokemonAquali) {
+		this.pokemonAquali = pokemonAquali;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public IPokemonFactory getiPokemonFactory() {
+		return iPokemonFactory;
+	}
+
+	/**
+	 * 
+	 * @param iPokemonFactory
+	 */
+	public void setiPokemonFactory(IPokemonFactory iPokemonFactory) {
+		this.iPokemonFactory = iPokemonFactory;
 	}
 }
