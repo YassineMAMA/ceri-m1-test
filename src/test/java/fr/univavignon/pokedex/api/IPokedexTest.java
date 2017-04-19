@@ -30,7 +30,7 @@ public class IPokedexTest {
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
 	/**
-	 * 
+	 * setup
 	 * @throws PokedexException
 	 */
 	@Before
