@@ -10,6 +10,7 @@ dependencies:
 test:
   override:
     - mvn test -Dtest=TestSuiteWithMock
+    - mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml -DprojectToken=blah -DapiToken=blah
     - mvn jacoco:report
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
