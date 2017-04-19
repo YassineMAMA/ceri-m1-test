@@ -17,7 +17,7 @@ public class PokemonFactorySelenium {
 	 * @return
 	 */
 	public int findIv(String name, int cp, int hp, int dust) {
-		ChromeDriverManager.getInstance().version("2.26").arch32().setup(); //Chrome car impossible de faire marcher phantomJS
+		ChromeDriverManager.getInstance().version("2.28").arch64().setup(); //Chrome car impossible de faire marcher phantomJS
 		ChromeDriver driver = new ChromeDriver();
 		driver.get(BASE_URL);
 		
