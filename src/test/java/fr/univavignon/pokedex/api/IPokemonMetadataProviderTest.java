@@ -30,6 +30,7 @@ public class IPokemonMetadataProviderTest {
 		when(getiPokemonMetadataProvider().getPokemonMetadata(0)).thenReturn(getPokemonMetadataBulbizarre());
 		when(getiPokemonMetadataProvider().getPokemonMetadata(133)).thenReturn(getPokemonMetadataAquali());
 		when(getiPokemonMetadataProvider().getPokemonMetadata(-1)).thenThrow(new PokedexException("No pokemon find at -1"));
+		when(getiPokemonMetadataProvider().getPokemonMetadata(151)).thenThrow(new PokedexException("No pokemon find at 151"));
     }
 
 	@Test

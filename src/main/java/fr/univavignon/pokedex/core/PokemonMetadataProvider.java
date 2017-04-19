@@ -78,7 +78,7 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider {
 
 	@Override
 	public PokemonMetadata getPokemonMetadata(int index) throws PokedexException {
-		if(index < 0 || index > this.cacheListPokemonMetadata.size()){
+		if(index < 0 || index >= this.cacheListPokemonMetadata.size()){
 			throw new PokedexException("l'index "+ index +" ne corresponds à aucun pokemon");	
 		}else{
 			return this.cacheListPokemonMetadata.get(index);
