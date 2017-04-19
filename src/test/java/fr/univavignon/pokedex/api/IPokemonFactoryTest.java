@@ -13,8 +13,8 @@ import org.mockito.junit.MockitoRule;
 
 public class IPokemonFactoryTest {
 	
-	Pokemon pokemonBulbizarre;
-	Pokemon pokemonAquali;
+	private Pokemon pokemonBulbizarre;
+	private Pokemon pokemonAquali;
 	
 	@Mock private IPokemonFactory iPokemonFactory;
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();

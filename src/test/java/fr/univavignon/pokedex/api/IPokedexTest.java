@@ -22,11 +22,11 @@ public class IPokedexTest {
 	private Answer<Object> answerSize;//answer for the size
 	private Answer<Object> answerIndice;//answer for the indice
 
-	Pokemon pokemonBulbizarre;
-	Pokemon pokemonAquali;
-	List<Pokemon> pokemonListByName;
-	List<Pokemon> pokemonListByIndex;
-	List<Pokemon> pokemonListByCp;
+	private Pokemon pokemonBulbizarre;
+	private Pokemon pokemonAquali;
+	private List<Pokemon> pokemonListByName;
+	private List<Pokemon> pokemonListByIndex;
+	private List<Pokemon> pokemonListByCp;
 
 	@Mock private IPokedex iPokedexTest;
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
