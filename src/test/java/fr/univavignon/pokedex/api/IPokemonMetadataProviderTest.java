@@ -25,7 +25,7 @@ public class IPokemonMetadataProviderTest {
 		//create 2 pokemons
 		setPokemonMetadataBulbizarre(new PokemonMetadata(0, "Bulbizarre", 126, 126, 90));
 		setPokemonMetadataAquali(new PokemonMetadata(133, "Aquali", 186, 168, 260));
-	
+		
 		//create return
 		when(getiPokemonMetadataProvider().getPokemonMetadata(0)).thenReturn(getPokemonMetadataBulbizarre());
 		when(getiPokemonMetadataProvider().getPokemonMetadata(133)).thenReturn(getPokemonMetadataAquali());

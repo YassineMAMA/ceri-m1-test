@@ -3,8 +3,6 @@ package fr.univavignon.pokedex.core;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.net.URLConnection;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,15 +23,15 @@ import fr.univavignon.pokedex.api.PokemonMetadata;
  */
 public class PokemonMetadataProvider implements IPokemonMetadataProvider {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(PokemonMetadataProvider.class);
-
 	/**
 	 * Instance unique non préinitialisée
 	 */
 	private static PokemonMetadataProvider INSTANCE = null;
 	
+	private List<PokemonMetadata> cacheListPokemonMetadata;
+	private static final Logger LOGGER = LoggerFactory.getLogger(PokemonMetadataProvider.class);
 	
-	private static List<PokemonMetadata> cacheListPokemonMetadata;
+	private final String URL = "https://raw.githubusercontent.com/PokemonGo-Enhanced/node-pokemongo-data/master/data.json";
 	
 
 	/**
@@ -49,26 +47,22 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider {
 	 */
 
 	private void getJson() {
-
-		String url = "https://raw.githubusercontent.com/PokemonGo-Enhanced/node-pokemongo-data/master/data.json";
 		String genreJson;
-		try (final InputStream in = new URL(url).openConnection().getInputStream()) {
+		try (final InputStream in = new URL(URL).openConnection().getInputStream()) {
 			genreJson = IOUtils.toString(in, "UTF-8");
-
-			JSONArray genreArray = new JSONArray(genreJson);
-			
+			JSONArray genreArray = new JSONArray(genreJson);	
 			for (Object object : genreArray) {
 				 JSONObject pok =  (JSONObject)object;
+				 LOGGER.debug("Pokemon n° " + pok.getInt("PkMn") + " added");
 				 this.cacheListPokemonMetadata.add(new PokemonMetadata(pok.getInt("PkMn"), pok.getString("Identifier"), pok.getInt("BaseAttack"), pok.getInt("BaseDefense"), pok.getInt("BaseStamina")));		 														
 			}
 			
 		
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		LOGGER.debug("wwwAZAZAZZ");
+		
 
 	}
 
