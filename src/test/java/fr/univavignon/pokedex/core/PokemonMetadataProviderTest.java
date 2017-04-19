@@ -3,14 +3,16 @@ package fr.univavignon.pokedex.core;
 import org.junit.Before;
 
 import fr.univavignon.pokedex.api.IPokemonMetadataProviderTest;
-import fr.univavignon.pokedex.api.PokedexException;
 import fr.univavignon.pokedex.api.PokemonMetadata;
 
 public class PokemonMetadataProviderTest extends IPokemonMetadataProviderTest  {
 	
 	
+	/**
+	 * setup
+	 */
 	@Before
-    public void setUp() throws PokedexException  {
+    public void setUp()   {
 
 		//create pokemon metadata provider
 		this.setiPokemonMetadataProvider(PokemonMetadataProvider.getInstance());

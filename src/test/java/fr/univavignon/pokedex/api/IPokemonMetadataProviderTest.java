@@ -18,6 +18,11 @@ public class IPokemonMetadataProviderTest {
 	@Mock private IPokemonMetadataProvider iPokemonMetadataProvider;
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 	
+	
+	/**
+	 * setUp
+	 * @throws PokedexException
+	 */
 	@Before
     public void setUp() throws PokedexException  {
 		MockitoAnnotations.initMocks(this);
@@ -33,6 +38,10 @@ public class IPokemonMetadataProviderTest {
 		when(getiPokemonMetadataProvider().getPokemonMetadata(151)).thenThrow(new PokedexException("No pokemon find at 151"));
     }
 
+	/**
+	 * Test des données d'un bulbizarre
+	 * @throws PokedexException
+	 */
 	@Test
 	public void testGetBulbizarre() throws PokedexException {
 		PokemonMetadata bul = getiPokemonMetadataProvider().getPokemonMetadata(0);
@@ -44,6 +53,10 @@ public class IPokemonMetadataProviderTest {
 		assertEquals(getPokemonMetadataBulbizarre().getStamina(), bul.getStamina());
 	}
 	
+	/**
+	 * Test des données d'un aquali
+	 * @throws PokedexException
+	 */
 	@Test
 	public void testGetAquali() throws PokedexException {
 		PokemonMetadata aqu = getiPokemonMetadataProvider().getPokemonMetadata(133);
@@ -55,36 +68,69 @@ public class IPokemonMetadataProviderTest {
 		assertEquals(getPokemonMetadataAquali().getStamina(), aqu.getStamina());
 	}
 	
+	/**
+	 * Test d'une sortie d'index
+	 * @throws PokedexException
+	 */
 	@Test(expected=PokedexException.class)
 	public void testPokedexException() throws PokedexException   {
 		getiPokemonMetadataProvider().getPokemonMetadata(-1);	
 	}
 	
+	/**
+	 * Test d'une sortie d'index
+	 * @throws PokedexException
+	 */
 	@Test(expected=PokedexException.class)
 	public void testPokedexException2() throws PokedexException   {
 		getiPokemonMetadataProvider().getPokemonMetadata(151);	
 	}
 
+	/**
+	 * getter pokemonMetadataBulbizarre
+	 * @return
+	 */
 	public PokemonMetadata getPokemonMetadataBulbizarre() {
 		return pokemonMetadataBulbizarre;
 	}
 
+	/**
+	 * setter pokemonMetadataBulbizarre
+	 * @param pokemonMetadataBulbizarre
+	 */
 	public void setPokemonMetadataBulbizarre(PokemonMetadata pokemonMetadataBulbizarre) {
 		this.pokemonMetadataBulbizarre = pokemonMetadataBulbizarre;
 	}
 
+	/**
+	 * getter pokemonMetadataAquali
+	 * @return
+	 */
 	public PokemonMetadata getPokemonMetadataAquali() {
 		return pokemonMetadataAquali;
 	}
-
+	
+	/**
+	 * setter pokemonMetadataAquali
+	 * @param pokemonMetadataAquali
+	 */
 	public void setPokemonMetadataAquali(PokemonMetadata pokemonMetadataAquali) {
 		this.pokemonMetadataAquali = pokemonMetadataAquali;
 	}
 
+	
+	/**
+	 * getter IPokemonMetadataProvider
+	 * @return
+	 */
 	public IPokemonMetadataProvider getiPokemonMetadataProvider() {
 		return iPokemonMetadataProvider;
 	}
 
+	/**
+	 * setter IPokemonMetadataProvider
+	 * @param IPokemonMetadataProvider
+	 */
 	public void setiPokemonMetadataProvider(IPokemonMetadataProvider iPokemonMetadataProvider) {
 		this.iPokemonMetadataProvider = iPokemonMetadataProvider;
 	}

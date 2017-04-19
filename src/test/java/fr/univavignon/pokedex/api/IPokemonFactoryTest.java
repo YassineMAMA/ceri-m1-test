@@ -19,6 +19,11 @@ public class IPokemonFactoryTest {
 	@Mock private IPokemonFactory iPokemonFactory;
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 	
+	
+	/**
+	 * setUp
+	 * @throws PokedexException
+	 */
 	@Before
     public void setUp() throws PokedexException  {
 		MockitoAnnotations.initMocks(this);

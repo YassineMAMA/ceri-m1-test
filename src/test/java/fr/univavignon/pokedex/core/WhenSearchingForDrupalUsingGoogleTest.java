@@ -27,8 +27,12 @@ public class WhenSearchingForDrupalUsingGoogleTest {
 		ChromeDriverManager.getInstance().setup(); //PhantomJs car inutile de faire du chrome sur CircleCI
 	}
 
+	
+	/**
+	 * setup
+	 */
 	@Before
-	public void openBrowser() {
+	public void setUp() {
 		final String baseUrl = "https://pokeassistant.com/main/ivcalculator?locale=en";
 		driver = new ChromeDriver();
 		driver.get(baseUrl);

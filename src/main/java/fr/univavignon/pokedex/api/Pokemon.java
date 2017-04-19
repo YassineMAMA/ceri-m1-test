@@ -5,6 +5,10 @@ package fr.univavignon.pokedex.api;
  * 
  * @author fv
  */
+/**
+ * @author adrie
+ *
+ */
 public final class Pokemon extends PokemonMetadata {
 
 	/** Combat Point of the pokemon. **/
@@ -54,27 +58,48 @@ public final class Pokemon extends PokemonMetadata {
 		this.iv = iv;
 	}
 
-	/** Combat Point getter getter. **/
+
+
+	/**
+	 * Combat Point getter getter.
+	 * @return cp
+	 */
 	public int getCp() {
 		return cp;
 	}
 	
-	/** HP getter. **/
+	
+	/**
+	 *  HP getter.
+	 * @return hp
+	 */
 	public int getHp() {
 		return hp;
 	}
 
-	/** Dust getter. **/
+	
+	/**
+	 * Dust getter
+	 * @return dust
+	 */
 	public int getDust() {
 		return dust;
 	}
 
-	/** Candy getter. **/
+
+	/**
+	 *  Candy getter.
+	 * @return candy
+	 */
 	public int getCandy() {
 		return candy;
 	}
 	
-	/** IV getter. **/
+	
+	/**
+	 * IV getter.
+	 * @return iv
+	 */
 	public double getIv() {
 		return iv;
 	}

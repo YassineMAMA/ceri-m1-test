@@ -23,6 +23,11 @@ public class IPokemonTrainerFactoryTest {
 	
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 	
+	
+	/**
+	 * setup
+	 * @throws PokedexException
+	 */
 	@Before
     public void setUp() throws PokedexException  {
 		MockitoAnnotations.initMocks(this);

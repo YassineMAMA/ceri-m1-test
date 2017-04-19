@@ -29,7 +29,10 @@ public class IPokedexTest {
 	@Mock private IPokedex iPokedexTest;
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-	// TODO
+	/**
+	 * 
+	 * @throws PokedexException
+	 */
 	@Before
 	public void setUp() throws PokedexException {
 		MockitoAnnotations.initMocks(this);
@@ -42,7 +45,7 @@ public class IPokedexTest {
 			}
 		};
 		//create answer for the indice
-		indice = -1;
+		indice = 0;
 		Answer<Object> answerIndice = new Answer<Object>() {
 			public Object answer(InvocationOnMock invocation) {
 				return indice;
@@ -57,8 +60,8 @@ public class IPokedexTest {
 		when(iPokedexTest.size()).thenAnswer(answerSize);
 
 		// create Answer for addPokemon() method with indice
-		when(iPokedexTest.addPokemon(pokemonAquali)).thenAnswer(answerIndice);
 		when(iPokedexTest.addPokemon(pokemonBulbizarre)).thenAnswer(answerIndice);
+		when(iPokedexTest.addPokemon(pokemonAquali)).thenAnswer(answerIndice);
 		
 		when(iPokedexTest.getPokemon(0)).thenReturn(pokemonBulbizarre);
 		when(iPokedexTest.getPokemon(1)).thenReturn(pokemonAquali);
@@ -82,16 +85,19 @@ public class IPokedexTest {
 		when(iPokedexTest.getPokemons(PokemonComparators.CP)).thenReturn(pokemonListByCp);
 	}
 
+	/**
+	 * Test de l'ajout de 2 pokemon au pokedex
+	 */
 	@Test
-	public void testAddPokemon() {
-		assertEquals(indice, addNewPokemon(pokemonBulbizarre)); //index = 0
-		assertEquals(indice, addNewPokemon(pokemonAquali)); //index = 1
+	public void testAddPokemonIndice() {
+		assertEquals(0, addNewPokemon(pokemonBulbizarre)); //index = 0
+		assertEquals(1, addNewPokemon(pokemonAquali)); //index = 1
 	}
 	
 	@Test
 	public void testSizePokedex() {
 		// before size=0
-		assertEquals(size, iPokedexTest.size());
+		assertEquals(0, iPokedexTest.size());
 		addNewPokemon(pokemonBulbizarre);
 		// before size=1
 		assertEquals(1, iPokedexTest.size());
@@ -187,7 +193,9 @@ public class IPokedexTest {
 	
 	
 	/**
+	 * Méthode pour ajouter un pokemon, changer la taille et l'indice attendu
 	 * Method for add Pokemon and change the size and the indice
+	 * Rappel, entre chaque méthode, on renitialise
 	 * 
 	 * @param p
 	 * @return

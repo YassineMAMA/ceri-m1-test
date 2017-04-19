@@ -20,6 +20,11 @@ public class IPokedexFactoryTest {
 	
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 	
+	
+	/**
+	 * setup
+	 * @throws PokedexException
+	 */
 	@Before
     public void setUp() throws PokedexException  {
 		MockitoAnnotations.initMocks(this);
@@ -27,6 +32,9 @@ public class IPokedexFactoryTest {
 		when(iPokedexFactory.createPokedex(iPokemonMetadataProvider, pokemonFactory)).thenReturn(iPokedex);
     }
 
+	/**
+	 * Test de creation de l'objet du pokedex
+	 */
 	@Test
 	public void testCreatePokedex()  {
 		//verify object is not null
