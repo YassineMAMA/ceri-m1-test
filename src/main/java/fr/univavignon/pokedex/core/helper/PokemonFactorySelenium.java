@@ -2,24 +2,13 @@ package fr.univavignon.pokedex.core.helper;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 
 public class PokemonFactorySelenium {
-	
-	private WebDriver driver;
 	private final String BASE_URL = "https://pokeassistant.com/main/ivcalculator?locale=en";
-
-	
-	/**
-	 * Constructeur du driver
-	 */
-	public PokemonFactorySelenium() {
-		
-	}
 
 
 	/**
@@ -28,8 +17,8 @@ public class PokemonFactorySelenium {
 	 * @return
 	 */
 	public int findIv(String name, int cp, int hp, int dust) {
-		ChromeDriverManager.getInstance().setup(); //Chrome car impossible de faire marcher phantomJS
-		driver = new ChromeDriver();
+		ChromeDriverManager.getInstance().version("2.1").arch32().setup(); //Chrome car impossible de faire marcher phantomJS
+		ChromeDriver driver = new ChromeDriver();
 		driver.get(BASE_URL);
 		
 		int n = -1;

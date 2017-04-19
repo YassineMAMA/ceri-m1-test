@@ -3,7 +3,6 @@ package fr.univavignon.pokedex.core;
 import org.junit.Before;
 
 import fr.univavignon.pokedex.api.IPokemonFactoryTest;
-import fr.univavignon.pokedex.api.Pokemon;
 
 public class PokemonFactoryTest extends IPokemonFactoryTest {
 	
