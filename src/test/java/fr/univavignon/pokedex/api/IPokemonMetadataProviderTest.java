@@ -23,39 +23,63 @@ public class IPokemonMetadataProviderTest {
 		MockitoAnnotations.initMocks(this);
 		
 		//create 2 pokemons
-		pokemonMetadataBulbizarre = new PokemonMetadata(0, "Bulbizarre", 126, 126, 90);
-		pokemonMetadataAquali = new PokemonMetadata(133, "Aquali", 186, 168, 260);
+		setPokemonMetadataBulbizarre(new PokemonMetadata(0, "Bulbizarre", 126, 126, 90));
+		setPokemonMetadataAquali(new PokemonMetadata(133, "Aquali", 186, 168, 260));
 	
 		//create return
-		when(iPokemonMetadataProvider.getPokemonMetadata(0)).thenReturn(pokemonMetadataBulbizarre);
-		when(iPokemonMetadataProvider.getPokemonMetadata(133)).thenReturn(pokemonMetadataAquali);
-		when(iPokemonMetadataProvider.getPokemonMetadata(-1)).thenThrow(new PokedexException("No pokemon find at -1"));
+		when(getiPokemonMetadataProvider().getPokemonMetadata(0)).thenReturn(getPokemonMetadataBulbizarre());
+		when(getiPokemonMetadataProvider().getPokemonMetadata(133)).thenReturn(getPokemonMetadataAquali());
+		when(getiPokemonMetadataProvider().getPokemonMetadata(-1)).thenThrow(new PokedexException("No pokemon find at -1"));
     }
 
 	@Test
 	public void testGetBulbizarre() throws PokedexException {
-		PokemonMetadata bul = iPokemonMetadataProvider.getPokemonMetadata(0);
+		PokemonMetadata bul = getiPokemonMetadataProvider().getPokemonMetadata(0);
 		
-		assertEquals(pokemonMetadataBulbizarre.getAttack(), bul.getAttack());
-		assertEquals(pokemonMetadataBulbizarre.getDefense(), bul.getDefense());
-		assertEquals(pokemonMetadataBulbizarre.getIndex(), bul.getIndex());
-		assertEquals(pokemonMetadataBulbizarre.getName(), bul.getName());
-		assertEquals(pokemonMetadataBulbizarre.getStamina(), bul.getStamina());
+		assertEquals(getPokemonMetadataBulbizarre().getAttack(), bul.getAttack());
+		assertEquals(getPokemonMetadataBulbizarre().getDefense(), bul.getDefense());
+		assertEquals(getPokemonMetadataBulbizarre().getIndex(), bul.getIndex());
+		assertEquals(getPokemonMetadataBulbizarre().getName(), bul.getName());
+		assertEquals(getPokemonMetadataBulbizarre().getStamina(), bul.getStamina());
 	}
 	
 	@Test
 	public void testGetAquali() throws PokedexException {
-		PokemonMetadata aqu = iPokemonMetadataProvider.getPokemonMetadata(133);
+		PokemonMetadata aqu = getiPokemonMetadataProvider().getPokemonMetadata(133);
 		
-		assertEquals(pokemonMetadataAquali.getAttack(), aqu.getAttack());
-		assertEquals(pokemonMetadataAquali.getDefense(), aqu.getDefense());
-		assertEquals(pokemonMetadataAquali.getIndex(), aqu.getIndex());
-		assertEquals(pokemonMetadataAquali.getName(), aqu.getName());
-		assertEquals(pokemonMetadataAquali.getStamina(), aqu.getStamina());
+		assertEquals(getPokemonMetadataAquali().getAttack(), aqu.getAttack());
+		assertEquals(getPokemonMetadataAquali().getDefense(), aqu.getDefense());
+		assertEquals(getPokemonMetadataAquali().getIndex(), aqu.getIndex());
+		assertEquals(getPokemonMetadataAquali().getName(), aqu.getName());
+		assertEquals(getPokemonMetadataAquali().getStamina(), aqu.getStamina());
 	}
 	
 	@Test(expected=PokedexException.class)
 	public void testPokedexException() throws PokedexException   {
-		iPokemonMetadataProvider.getPokemonMetadata(-1);	
+		getiPokemonMetadataProvider().getPokemonMetadata(-1);	
+	}
+
+	public PokemonMetadata getPokemonMetadataBulbizarre() {
+		return pokemonMetadataBulbizarre;
+	}
+
+	public void setPokemonMetadataBulbizarre(PokemonMetadata pokemonMetadataBulbizarre) {
+		this.pokemonMetadataBulbizarre = pokemonMetadataBulbizarre;
+	}
+
+	public PokemonMetadata getPokemonMetadataAquali() {
+		return pokemonMetadataAquali;
+	}
+
+	public void setPokemonMetadataAquali(PokemonMetadata pokemonMetadataAquali) {
+		this.pokemonMetadataAquali = pokemonMetadataAquali;
+	}
+
+	public IPokemonMetadataProvider getiPokemonMetadataProvider() {
+		return iPokemonMetadataProvider;
+	}
+
+	public void setiPokemonMetadataProvider(IPokemonMetadataProvider iPokemonMetadataProvider) {
+		this.iPokemonMetadataProvider = iPokemonMetadataProvider;
 	}
 }
