@@ -19,9 +19,7 @@ public class IPokedexTest {
 
 	private int size;
 	private int indice;
-	private Answer<Object> answerSize;//answer for the size
-	private Answer<Object> answerIndice;//answer for the indice
-
+	
 	private Pokemon pokemonBulbizarre;
 	private Pokemon pokemonAquali;
 	private List<Pokemon> pokemonListByName;
@@ -38,14 +36,14 @@ public class IPokedexTest {
 		
 		//create answer for the size
 		size = 0;
-		answerSize = new Answer<Object>() {
+		Answer<Object> answerSize = new Answer<Object>() {
 			public Object answer(InvocationOnMock invocation) {
 				return size;
 			}
 		};
 		//create answer for the indice
 		indice = -1;
-		answerIndice = new Answer<Object>() {
+		Answer<Object> answerIndice = new Answer<Object>() {
 			public Object answer(InvocationOnMock invocation) {
 				return indice;
 			}

@@ -45,13 +45,13 @@ public class IPokemonMetadataProviderTest {
 	
 	@Test
 	public void testGetAquali() throws PokedexException {
-		PokemonMetadata aqu = iPokemonMetadataProvider.getPokemonMetadata(0);
+		PokemonMetadata aqu = iPokemonMetadataProvider.getPokemonMetadata(133);
 		
-		assertEquals(pokemonMetadataBulbizarre.getAttack(), aqu.getAttack());
-		assertEquals(pokemonMetadataBulbizarre.getDefense(), aqu.getDefense());
-		assertEquals(pokemonMetadataBulbizarre.getIndex(), aqu.getIndex());
-		assertEquals(pokemonMetadataBulbizarre.getName(), aqu.getName());
-		assertEquals(pokemonMetadataBulbizarre.getStamina(), aqu.getStamina());
+		assertEquals(pokemonMetadataAquali.getAttack(), aqu.getAttack());
+		assertEquals(pokemonMetadataAquali.getDefense(), aqu.getDefense());
+		assertEquals(pokemonMetadataAquali.getIndex(), aqu.getIndex());
+		assertEquals(pokemonMetadataAquali.getName(), aqu.getName());
+		assertEquals(pokemonMetadataAquali.getStamina(), aqu.getStamina());
 	}
 	
 	@Test(expected=PokedexException.class)
