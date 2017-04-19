@@ -4,8 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
+import io.github.bonigarcia.wdm.FirefoxDriverManager;
 
 public class PokemonFactorySelenium {
 	private final String BASE_URL = "https://pokeassistant.com/main/ivcalculator?locale=en";
@@ -17,8 +19,8 @@ public class PokemonFactorySelenium {
 	 * @return
 	 */
 	public int findIv(String name, int cp, int hp, int dust) {
-		ChromeDriverManager.getInstance().version("2.28").arch64().setup(); //Chrome car impossible de faire marcher phantomJS
-		ChromeDriver driver = new ChromeDriver();
+		FirefoxDriverManager.getInstance().setup(); //Chrome car impossible de faire marcher phantomJS
+		FirefoxDriver driver = new FirefoxDriver();
 		driver.get(BASE_URL);
 		
 		int n = -1;
