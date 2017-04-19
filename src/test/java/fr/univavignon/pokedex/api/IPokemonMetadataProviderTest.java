@@ -58,6 +58,11 @@ public class IPokemonMetadataProviderTest {
 	public void testPokedexException() throws PokedexException   {
 		getiPokemonMetadataProvider().getPokemonMetadata(-1);	
 	}
+	
+	@Test(expected=PokedexException.class)
+	public void testPokedexException2() throws PokedexException   {
+		getiPokemonMetadataProvider().getPokemonMetadata(151);	
+	}
 
 	public PokemonMetadata getPokemonMetadataBulbizarre() {
 		return pokemonMetadataBulbizarre;

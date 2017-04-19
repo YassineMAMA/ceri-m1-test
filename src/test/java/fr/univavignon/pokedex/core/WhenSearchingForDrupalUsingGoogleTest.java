@@ -11,9 +11,9 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
-import io.github.bonigarcia.wdm.PhantomJsDriverManager;
+import io.github.bonigarcia.wdm.ChromeDriverManager;
 
 
 
@@ -23,13 +23,13 @@ public class WhenSearchingForDrupalUsingGoogleTest {
 
 	@BeforeClass
 	public static void setupClass() {
-		PhantomJsDriverManager.getInstance().useTaobaoMirror().setup(); //PhantomJs car inutile de faire du chrome sur CircleCI
+		ChromeDriverManager.getInstance().setup(); //PhantomJs car inutile de faire du chrome sur CircleCI
 	}
 
 	@Before
 	public void openBrowser() {
 		final String baseUrl = "https://pokeassistant.com/main/ivcalculator?locale=en";
-		driver = new PhantomJSDriver();
+		driver = new ChromeDriver();
 		driver.get(baseUrl);
 	}
 

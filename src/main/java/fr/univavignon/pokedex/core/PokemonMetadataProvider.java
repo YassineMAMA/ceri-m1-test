@@ -53,8 +53,8 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider {
 			JSONArray genreArray = new JSONArray(genreJson);	
 			for (Object object : genreArray) {
 				 JSONObject pok =  (JSONObject)object;
-				 LOGGER.debug("Pokemon n° " + pok.getInt("PkMn") + " added");
-				 this.cacheListPokemonMetadata.add(new PokemonMetadata(pok.getInt("PkMn"), pok.getString("Identifier"), pok.getInt("BaseAttack"), pok.getInt("BaseDefense"), pok.getInt("BaseStamina")));		 														
+				 LOGGER.debug("Pokemon n° " + (pok.getInt("PkMn")-1) + " added");
+				 this.cacheListPokemonMetadata.add(new PokemonMetadata((pok.getInt("PkMn")-1), pok.getString("Identifier"), pok.getInt("BaseAttack"), pok.getInt("BaseDefense"), pok.getInt("BaseStamina")));		 														
 			}
 			
 		

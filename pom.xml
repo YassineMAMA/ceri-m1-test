@@ -4,12 +4,10 @@
 
 	<groupId>tp-test</groupId>
 	<artifactId>pokemon</artifactId>
-	<version>0.0.1</version>
+	<version>0.2.0</version>
 	<packaging>jar</packaging>
+	<name>TP-pokemon</name>
 
-	<name>TP-pekemon</name>
-	<url>http://maven.apache.org</url>
-	
 	<developers>
 		<developer>
 			<name>Brugel Adrien</name>
@@ -110,23 +108,12 @@
 		    <artifactId>selenium-java</artifactId>
 		    <version>3.3.1</version>
 		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-remote-driver -->
-		<!--<dependency>
-		    <groupId>org.seleniumhq.selenium</groupId>
-		    <artifactId>selenium-remote-driver</artifactId>
-		    <version>3.3.1</version>
-		</dependency>-->
 
-		
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>
 			<version>1.6.2</version>
 		</dependency>
-
-		
-
 
 	</dependencies>
 

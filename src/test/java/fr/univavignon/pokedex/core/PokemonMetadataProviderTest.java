@@ -16,8 +16,8 @@ public class PokemonMetadataProviderTest extends IPokemonMetadataProviderTest  {
 		this.setiPokemonMetadataProvider(PokemonMetadataProvider.getInstance());
 		
 		//create 2 pokemons
-		this.setPokemonMetadataBulbizarre( new PokemonMetadata(1, "Bulbasaur", 126, 126, 90));
-		this.setPokemonMetadataAquali( new PokemonMetadata(134, "Vaporeon", 186, 168, 260));
+		this.setPokemonMetadataBulbizarre( new PokemonMetadata(0, "Bulbasaur", 126, 126, 90));
+		this.setPokemonMetadataAquali( new PokemonMetadata(133, "Vaporeon", 186, 168, 260));
     }
 	
 }
