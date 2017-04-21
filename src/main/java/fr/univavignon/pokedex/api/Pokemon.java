@@ -107,6 +107,7 @@ public final class Pokemon extends PokemonMetadata {
 	/**
 	 * surchage du toString
 	 */
+	/*
 	@Override
 	public String toString(){
 		return  "Name:"+this.getName()+"_"+
@@ -120,6 +121,6 @@ public final class Pokemon extends PokemonMetadata {
 				"Iv:"+this.getIv()+"_"+
 				"Stamina:"+this.getStamina()+"_";
 		
-	}
+	}*/
 	
 }

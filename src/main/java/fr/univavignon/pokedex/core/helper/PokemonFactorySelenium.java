@@ -3,10 +3,8 @@ package fr.univavignon.pokedex.core.helper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 
 public class PokemonFactorySelenium {
@@ -19,8 +17,9 @@ public class PokemonFactorySelenium {
 	 * @return
 	 */
 	public int findIv(String name, int cp, int hp, int dust) {
-		FirefoxDriverManager.getInstance().setup(); //Chrome car impossible de faire marcher phantomJS
+		FirefoxDriverManager.getInstance().setup(); //Firefox car impossible de faire marcher phantomJS ou chrome depuis circleCI
 		FirefoxDriver driver = new FirefoxDriver();
+		
 		driver.get(BASE_URL);
 		
 		int n = -1;
