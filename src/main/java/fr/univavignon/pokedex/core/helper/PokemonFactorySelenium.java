@@ -17,6 +17,10 @@ public class PokemonFactorySelenium {
 	 * @return
 	 */
 	public int findIv(String name, int cp, int hp, int dust) {
+		
+		//ChromeDriverManager.getInstance().setup(); //Firefox car impossible de faire marcher phantomJS ou chrome depuis circleCI
+		//ChromeDriver driver = new ChromeDriver();
+		
 		FirefoxDriverManager.getInstance().setup(); //Firefox car impossible de faire marcher phantomJS ou chrome depuis circleCI
 		FirefoxDriver driver = new FirefoxDriver();
 		
