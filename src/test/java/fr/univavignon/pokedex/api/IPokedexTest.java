@@ -15,25 +15,42 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import org.mockito.stubbing.Answer;
 
-public class IPokedexTest {
-
+public class IPokedexTest  {
+	
 	private int size;
 	private int indice;
 	
 	private Pokemon pokemonBulbizarre;
 	private Pokemon pokemonAquali;
 	
-
+	private Pokemon pokemonBulbizarreInit;
+	private Pokemon pokemonAqualiInit; 
+	
 	@Mock private IPokedex iPokedexTest;
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
-
+	
+	
 	/**
 	 * setup
 	 * @throws PokedexException
 	 */
+
 	@Before
 	public void setUp() throws PokedexException {
+		
 		MockitoAnnotations.initMocks(this);
+		//create 2 pokemons
+		pokemonBulbizarreInit = new Pokemon(0, "Bulbasaur", 126, 126, 90, 613, 64, 4000, 4, 56);
+		pokemonAqualiInit = new Pokemon(133, "Vaporeon", 186, 168, 260, 1984, 172, 3500, 4, 69);
+		
+		//create 2 returns when createPokemon on pokedex
+		when(getiPokedexTest().createPokemon(0, 613, 64, 4000, 4)).thenReturn(pokemonBulbizarreInit);
+		when(getiPokedexTest().createPokemon(133, 1984, 172, 3500, 4)).thenReturn(pokemonAqualiInit);
+
+		when(getiPokedexTest().getPokemon(1)).thenReturn(pokemonBulbizarreInit);
+		when(getiPokedexTest().getPokemon(0)).thenReturn(pokemonAqualiInit);
+		when(getiPokedexTest().getPokemon(999)).thenThrow(new PokedexException("No pokemon find at -1"));
+		  
 		
 		//create answer for the size
 		size = 0;
@@ -50,14 +67,7 @@ public class IPokedexTest {
 			}
 		};
 
-		//create 2 pokemons
-		Pokemon pokemonBulbizarreInit = new Pokemon(0, "Bulbasaur", 126, 126, 90, 613, 64, 4000, 4, 56);
-		Pokemon pokemonAqualiInit = new Pokemon(133, "Vaporeon", 186, 168, 260, 1984, 172, 3500, 4, 69);
 		
-		//create 2 returns when createPokemon on pokedex
-		when(getiPokedexTest().createPokemon(0, 613, 64, 4000, 4)).thenReturn(pokemonBulbizarreInit);
-		when(getiPokedexTest().createPokemon(133, 1984, 172, 3500, 4)).thenReturn(pokemonAqualiInit);
-
 		// create Answer for size() method
 		when(getiPokedexTest().size()).thenAnswer(answerSize);
 
@@ -65,9 +75,7 @@ public class IPokedexTest {
 		when(getiPokedexTest().addPokemon(getiPokedexTest().createPokemon(0, 613, 64, 4000, 4))).thenAnswer(answerIndice);
 		when(getiPokedexTest().addPokemon(getiPokedexTest().createPokemon(133, 1984, 172, 3500, 4))).thenAnswer(answerIndice);
 		
-		when(getiPokedexTest().getPokemon(1)).thenReturn(pokemonBulbizarreInit);
-		when(getiPokedexTest().getPokemon(0)).thenReturn(pokemonAqualiInit);
-		when(getiPokedexTest().getPokemon(999)).thenThrow(new PokedexException("No pokemon find at -1"));
+		
 		
 		
 		
@@ -258,4 +266,32 @@ public class IPokedexTest {
 	public void setiPokedexTest(IPokedex iPokedexTest) {
 		this.iPokedexTest = iPokedexTest;
 	}
+
+
+
+	public Pokemon getPokemonBulbizarreInit() {
+		return pokemonBulbizarreInit;
+	}
+
+
+
+	public void setPokemonBulbizarreInit(Pokemon pokemonBulbizarreInit) {
+		this.pokemonBulbizarreInit = pokemonBulbizarreInit;
+	}
+
+
+
+	public Pokemon getPokemonAqualiInit() {
+		return pokemonAqualiInit;
+	}
+
+
+
+	public void setPokemonAqualiInit(Pokemon pokemonAqualiInit) {
+		this.pokemonAqualiInit = pokemonAqualiInit;
+	}
+
+
+
+
 }
