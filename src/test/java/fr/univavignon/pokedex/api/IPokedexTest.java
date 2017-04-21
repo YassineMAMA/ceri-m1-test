@@ -22,9 +22,7 @@ public class IPokedexTest {
 	
 	private Pokemon pokemonBulbizarre;
 	private Pokemon pokemonAquali;
-	private List<Pokemon> pokemonListByName;
-	private List<Pokemon> pokemonListByIndex;
-	private List<Pokemon> pokemonListByCp;
+	
 
 	@Mock private IPokedex iPokedexTest;
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
@@ -75,14 +73,14 @@ public class IPokedexTest {
 		
 		
 		//create list for NAME
-		pokemonListByName = new ArrayList<Pokemon>();
+		ArrayList<Pokemon> pokemonListByName = new ArrayList<Pokemon>();
 		pokemonListByName.add(getiPokedexTest().getPokemon(1));
 		pokemonListByName.add(getiPokedexTest().getPokemon(0));
 		//create list for INDEX
 		
-		pokemonListByIndex = pokemonListByName;//on fait pointer vers une liste identique car c'est le meme ordre
+		ArrayList<Pokemon> pokemonListByIndex = pokemonListByName;//on fait pointer vers une liste identique car c'est le meme ordre
 		//list for CP
-		pokemonListByCp = pokemonListByName;//on fait pointer vers une liste identiquecar c'est le meme ordre
+		ArrayList<Pokemon> pokemonListByCp = pokemonListByName;//on fait pointer vers une liste identiquecar c'est le meme ordre
 		
 		
 		when(getiPokedexTest().getPokemons(PokemonComparators.NAME)).thenReturn(pokemonListByName);
