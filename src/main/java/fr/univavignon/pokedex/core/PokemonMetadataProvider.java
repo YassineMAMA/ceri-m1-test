@@ -58,12 +58,7 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider {
 			}
 			
 		
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		
-
+		} catch (IOException e) { e.printStackTrace(); }
 	}
 
 	/**

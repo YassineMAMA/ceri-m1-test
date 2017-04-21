@@ -37,18 +37,15 @@ public class PokemonFactorySelenium {
 			// peut pas avoir de condition approprié
 			try {
 				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			} catch (InterruptedException e) { e.printStackTrace(); }
 			
 			String res = ((WebElement) driver.findElement(By.xpath("//*[@id=\"possibleCombinationsStringmax\"]//b")))
 					.getText();
 			n = Math.round(Float.parseFloat(res.replace("%", "")));
 			((WebElement) driver.findElement(By.xpath("//*[@id=\"search_pokemon_name\"]"))).sendKeys(n + "");
 
-		} catch (NoSuchElementException e) {
-			e.printStackTrace();
-		}
+		} catch (NoSuchElementException e) { e.printStackTrace(); }
+		
 		driver.quit();
 		
 		return n;

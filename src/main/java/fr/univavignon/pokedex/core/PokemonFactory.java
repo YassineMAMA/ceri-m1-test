@@ -53,10 +53,7 @@ public class PokemonFactory implements IPokemonFactory{
 			PokemonFactorySelenium pfs = new PokemonFactorySelenium();
 			int iv = pfs.findIv(pm.getName(), cp, hp, dust);
 			p = new Pokemon(index, pm.getName(), pm.getAttack(), pm.getDefense(), pm.getStamina(), cp, hp, dust, candy, iv);
-		} catch (PokedexException e) {
-			LOGGER.error(e.getMessage());
-			LOGGER.error("Impossible de créer le pokemon en raison d'un index invalide");
-		}
+		} catch (PokedexException e) { LOGGER.error(e.getMessage() + "Impossible de créer le pokemon en raison d'un index invalide"); }
 		return p;
 	}
 }
