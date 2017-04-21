@@ -14,10 +14,10 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
 public class IPokedexFactoryTest {
-	@Mock private IPokedexFactory PokedexFactoryMock;
-	@Mock private IPokemonMetadataProvider pokemonMetadataProviderMock;
-	@Mock private IPokemonFactory pokemonFactoryMock;
-	@Mock private IPokedex pokedexMock;
+	@Mock private IPokedexFactory PokedexFactory;
+	@Mock private IPokemonMetadataProvider MetadataProvider;
+	@Mock private IPokemonFactory pokemonFactory;
+	@Mock private IPokedex pokedex;
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 	
 	Pokemon pokemon = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 56);
@@ -26,23 +26,23 @@ public class IPokedexFactoryTest {
 	@Before
 	public void setUp() throws PokedexException {
 		pokemonS.add(pokemon);
-		Mockito.when(PokedexFactoryMock.createPokedex(pokemonMetadataProviderMock, pokemonFactoryMock)).thenReturn(pokedexMock);	
-		Mockito.when(pokemonMetadataProviderMock.getPokemonMetadata(0)).thenReturn(new PokemonMetadata(0,"Bulbizarre",126,126,90));
-		Mockito.when(pokemonFactoryMock.createPokemon(0, 613, 64, 4000, 4)).thenReturn(pokemon);
-		Mockito.when(pokedexMock.size()).thenReturn(0);
-		Mockito.when(pokedexMock.addPokemon(pokemon)).thenReturn(0);
-		Mockito.when(pokedexMock.getPokemon(0)).thenReturn(pokemon);
-		Mockito.when(pokedexMock.getPokemons()).thenReturn(pokemonS);
+		Mockito.when(PokedexFactory.createPokedex(MetadataProvider, pokemonFactory)).thenReturn(pokedex);	
+		Mockito.when(MetadataProvider.getPokemonMetadata(0)).thenReturn(new PokemonMetadata(0,"Bulbizarre",126,126,90));
+		Mockito.when(pokemonFactory.createPokemon(0, 613, 64, 4000, 4)).thenReturn(pokemon);
+		Mockito.when(pokedex.size()).thenReturn(0);
+		Mockito.when(pokedex.addPokemon(pokemon)).thenReturn(0);
+		Mockito.when(pokedex.getPokemon(0)).thenReturn(pokemon);
+		Mockito.when(pokedex.getPokemons()).thenReturn(pokemonS);
 	}
 	
 	@Test 
 	public void testCreatePokedex() throws PokedexException{
 		
-		IPokedex pokedex = PokedexFactoryMock.createPokedex(pokemonMetadataProviderMock, pokemonFactoryMock);
-		assertEquals(0, pokedex.size());
-		assertEquals(0, pokedex.addPokemon(pokemon));
-		assertEquals(pokemon, pokedex.getPokemon(0));
-		assertEquals(1, pokedexMock.getPokemons().size());
+		IPokedex pokedexTest = PokedexFactory.createPokedex(MetadataProvider, pokemonFactory);
+		assertEquals(0, pokedexTest.size());
+		assertEquals(0, pokedexTest.addPokemon(pokemon));
+		assertEquals(pokemon, pokedexTest.getPokemon(0));
+		assertEquals(1, pokedexTest.getPokemons().size());
 		
 	}
 }
