@@ -1,15 +1,15 @@
 package fr.univavignon.pokedex.api;
 
 import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import java.util.ArrayList;
+import java.util.List;
+
+
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
