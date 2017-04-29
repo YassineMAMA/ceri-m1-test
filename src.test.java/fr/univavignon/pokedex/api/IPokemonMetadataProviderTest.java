@@ -4,42 +4,46 @@ import static org.junit.Assert.*;
 import org.junit.*;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
+import org.mockito.MockitoAnnotations;
+
 
 
 public class IPokemonMetadataProviderTest {
+	
 	@Mock private IPokemonMetadataProvider pokemonMetadataProvider;
-	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
-	
+	private PokemonMetadata aqualiMetaData = new PokemonMetadata(133, "Aquali", 186, 168, 260);
+    
 	@Before
-	public void setUp() throws PokedexException {
-		Mockito.when(pokemonMetadataProvider.getPokemonMetadata(-1)).thenThrow(new PokedexException(""));
-		Mockito.when(pokemonMetadataProvider.getPokemonMetadata(0)).thenReturn(new PokemonMetadata(0,"Bulbizarre",126,126,90));
-		Mockito.when(pokemonMetadataProvider.getPokemonMetadata(151)).thenThrow(new PokedexException(""));
+	public void setUp() throws PokedexException{
+		
+		MockitoAnnotations.initMocks(this);
+
+		Mockito.when(pokemonMetadataProvider.getPokemonMetadata(133)).thenReturn(aqualiMetaData);
+		Mockito.when(pokemonMetadataProvider.getPokemonMetadata(151)).thenThrow(new PokedexException("Index superieur a 150"));
+		Mockito.when(pokemonMetadataProvider.getPokemonMetadata(-1)).thenThrow(new PokedexException("Index neagtive"));
+
 	}
 	
-	@Test(expected=PokedexException.class)
-	public void testPokemonMetadata0NotFoundException() throws PokedexException {
-		pokemonMetadataProvider.getPokemonMetadata(-1);
-	}
+	
+	@Test
+	public void testPokemonMetadata() throws PokedexException{
+		
+		assertEquals(aqualiMetaData.getIndex(), pokemonMetadataProvider.getPokemonMetadata(133).getIndex());
+		assertEquals(aqualiMetaData.getName(), pokemonMetadataProvider.getPokemonMetadata(133).getName());
+		assertEquals(aqualiMetaData.getAttack(), pokemonMetadataProvider.getPokemonMetadata(133).getAttack());
+		assertEquals(aqualiMetaData.getDefense(), pokemonMetadataProvider.getPokemonMetadata(133).getDefense());
+		assertEquals(aqualiMetaData.getStamina(), pokemonMetadataProvider.getPokemonMetadata(133).getStamina());
 
-	@Test(expected=PokedexException.class)
-	public void testPokemonMetadata151NotFoundException() throws PokedexException {
+	}
+	
+	@Test(expected = PokedexException.class)
+	public void IndexOverrideExceptionTest() throws PokedexException {	
 		pokemonMetadataProvider.getPokemonMetadata(151);
 	}
 	
-	@Test 
-	public void testPokemonMetadata() throws PokedexException{
-		
-	
-		PokemonMetadata pokemonMetadataTest = pokemonMetadataProvider.getPokemonMetadata(0);
-		
-		assertEquals(126,pokemonMetadataTest.getAttack());
-		assertEquals(126,pokemonMetadataTest.getDefense());
-		assertEquals(0,pokemonMetadataTest.getIndex());
-		assertEquals("Bulbizarre",pokemonMetadataTest.getName());
-		assertEquals(90,pokemonMetadataTest.getStamina());
+	@Test(expected = PokedexException.class)
+	public void negativeIndexTest() throws PokedexException {		
+		pokemonMetadataProvider.getPokemonMetadata(-1);
 	}
 }
  

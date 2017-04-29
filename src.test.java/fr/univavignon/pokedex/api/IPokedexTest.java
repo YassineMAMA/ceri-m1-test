@@ -1,58 +1,61 @@
 package fr.univavignon.pokedex.api;
 
 import static org.junit.Assert.assertEquals;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
-
-public class IPokedexTest {@Mock private IPokedexFactory PokedexFactory;
-@Mock private IPokemonMetadataProvider MetadataProvider;
-@Mock private IPokemonFactory pokemonFactory;
-@Mock private IPokedex pokedex;
-@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
-
-
-private Pokemon blbi = new Pokemon(0,"Bulbizarre",126,126,90,613,64,4000,4,56);
-private Pokemon aqli = new Pokemon(133,"Aquali",186,168,260,2729,202,5000,4,100);
-private List<Pokemon> pokemonList = new ArrayList<Pokemon>(151);
-
-
-@Before
-public void setUp() throws PokedexException {
-	pokemonList.add(blbi);
-	pokemonList.add(aqli);
-	Mockito.when(PokedexFactory.createPokedex(MetadataProvider, pokemonFactory)).thenReturn(pokedex);	
-	Mockito.when(MetadataProvider.getPokemonMetadata(0)).thenReturn(new PokemonMetadata(0,"Bulbizarre",126,126,90));
-	Mockito.when(MetadataProvider.getPokemonMetadata(1)).thenReturn(new PokemonMetadata(133,"Aquali",186,168,260));
-	Mockito.when(pokemonFactory.createPokemon(0, 613, 64, 4000, 4)).thenReturn(blbi);
-	Mockito.when(pokemonFactory.createPokemon(133, 2729, 202, 5000, 4)).thenReturn(aqli);
-	Mockito.when(pokedex.size()).thenReturn(0);
-	Mockito.when(pokedex.addPokemon(blbi)).thenReturn(0);
-	Mockito.when(pokedex.addPokemon(aqli)).thenReturn(1);
-	Mockito.when(pokedex.getPokemon(0)).thenReturn(blbi);
-	Mockito.when(pokedex.getPokemon(1)).thenReturn(aqli);
-	Mockito.when(pokedex.getPokemons()).thenReturn(pokemonList);
-}
-
-@Test 
-public void testCreatePokedex() throws PokedexException{
+public class IPokedexTest {
+	@Mock private IPokedex pokedex;
 	
-	IPokedex pokedexTest = PokedexFactory.createPokedex(MetadataProvider, pokemonFactory);
-	assertEquals(0, pokedexTest.size());
-	assertEquals(0, pokedexTest.addPokemon(blbi));
-	assertEquals(blbi, pokedexTest.getPokemon(0));
-	assertEquals(1, pokedexTest.getPokemons().size());
-	assertEquals(1, pokedexTest.addPokemon(aqli));
-	assertEquals(aqli, pokedexTest.getPokemon(1));
-	assertEquals(2, pokedexTest.getPokemons().size());
+	private int index = 0;
+	private List<Pokemon> pokemonList = new ArrayList<Pokemon>(151);
+	private Pokemon aquali = new Pokemon(133,"Aquali",186,168,260,2729,202,5000,4,100);
+	private Pokemon bulbizzare = new Pokemon(0,"Bulbizarre",126,126,90,613,64,4000,4,56);
+
+	@Before 
+	public void setUp() throws PokedexException{
+		
+		MockitoAnnotations.initMocks(this);
+		
+		Mockito.when(pokedex.addPokemon(aquali)).thenReturn(index++);
+		pokemonList.add(aquali);
+		Mockito.when(pokedex.getPokemon(0)).thenReturn(aquali);
+		
+		Mockito.when(pokedex.addPokemon(bulbizzare)).thenReturn(index++);
+		pokemonList.add(bulbizzare);
+		Mockito.when(pokedex.getPokemon(1)).thenReturn(bulbizzare);
+		
+		Mockito.when(pokedex.size()).thenReturn(index);
+		Mockito.when(pokedex.getPokemons()).thenReturn(pokemonList);
+	}
 	
-}
+	
+	@Test(expected=PokedexException.class)
+	public void testPokemonException() throws PokedexException{
+		pokedex.getPokemon(-1);
+	}
+	
+	@Test 
+	public void testPokedex() throws PokedexException{
+		List<Pokemon> pokemons = pokedex.getPokemons();
+		
+		assertEquals(pokedex.addPokemon(aquali), 0);
+		assertEquals(pokedex.size(), 1);
+		assertEquals(pokedex.addPokemon(bulbizzare), 1);
+		assertEquals(pokedex.size(), 2);
+		
+		assertEquals(pokedex.getPokemon(0), aquali);
+		assertEquals(pokedex.getPokemon(1), bulbizzare);
+				
+		assertEquals(pokemonList, pokemons);		
+	}
+	
+	
 }
