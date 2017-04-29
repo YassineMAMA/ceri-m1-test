@@ -1,9 +1,13 @@
 # UCE Génie Logiciel Avancé : Techniques de tests
 
-Sujet de TP : 
+# Yassine MAMA 
+# Classic
 
-- [Slide cours](https://github.com/Faylixe/ceri-m1-test/blob/resources/Technique%20de%20tests.pdf)
+#Badge CircleCI
+[![CircleCI](https://circleci.com/gh/YassineMAMA/ceri-m1-test.svg?style=svg)](https://circleci.com/gh/YassineMAMA/ceri-m1-test)
 
-- [TP0 - Fork them all !](https://github.com/Faylixe/ceri-m1-test/raw/resources/TP0 - fork them all.pdf)
-- [TP1 - (Des)intégration continue](https://github.com/Faylixe/ceri-m1-test/raw/resources/TP1 - (Des)intégration continue.pdf)
-- [TP2 - Pokeunit](https://github.com/Faylixe/ceri-m1-test/raw/resources/TP2 - Pokeunit.pdf)
+#Badge Code Quality 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/06517d0ca94e46438730eb8ede9e7bee)](https://www.codacy.com/app/YassineMAMA/ceri-m1-test?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=YassineMAMA/ceri-m1-test&amp;utm_campaign=Badge_Grade)
+
+#Badge Test Coverage
+
