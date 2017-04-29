@@ -13,27 +13,24 @@ import java.util.List;
 public class IPokemonTrainerFactoryTest {
 	
 
-
-
-	@Mock private IPokedexFactory pokedexFactory;
+	@Mock private IPokedexFactory PokedexFactory;
 	@Mock private IPokedex pokedex;
 	@Mock private IPokemonTrainerFactory pokemonTrainerFactory;
 	@Mock public MockitoRule mockitoRule = MockitoJUnit.rule();
 
 	
-	
+
 	@Before
 	public void setUp() throws PokedexException {
 		MockitoAnnotations.initMocks(this);
-		Mockito.when(pokemonTrainerFactory.createTrainer("Nasreddine", Team.MYSTIC,  pokedexFactory)).thenReturn(pokemoTrainer);
+		Mockito.when(pokemonTrainerFactory.createTrainer("uTG", Team.MYSTIC, PokedexFactory)).thenReturn(new PokemonTrainer("uTG",Team.MYSTIC,pokedex));;
 	}
 	@Test 
 	public void testCreateTrainer() throws PokedexException {
-		
-		assertEquals(0, pokedex.size());
-		assertEquals(0, pokedex.addPokemon(pokemon));
-		assertEquals(pokemon, pokedex.getPokemon(0));
-		assertEquals(1, pokedex.getPokemons().size());
+		PokemonTrainer uTG = pokemonTrainerFactory.createTrainer("uTG", Team.MYSTIC, PokedexFactory);
+		assertNotNull(uTG);
+		assertEquals(uTG.getName(),"uTG");
+		assertEquals(uTG.getTeam(),Team.MYSTIC);
 		
 	}
 
