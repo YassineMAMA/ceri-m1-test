@@ -37,7 +37,7 @@ public class IPokemonMetadataProviderTest {
 	}
 	
 	@Test(expected = PokedexException.class)
-	public void IndexOverrideExceptionTest() throws PokedexException {	
+	public void indexOverrideExceptionTest() throws PokedexException {	
 		pokemonMetadataProvider.getPokemonMetadata(151);
 	}
 	
