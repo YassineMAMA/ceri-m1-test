@@ -4,28 +4,28 @@ import static org.junit.Assert.*;
 import org.junit.*;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import java.util.ArrayList;
 import java.util.List;
 
 public class IPokemonTrainerFactoryTest {
-
-	@Mock private IPokedexFactory PokedexFactory;
-	@Mock private IPokemonMetadataProvider MetadataProvider;
-	@Mock private IPokemonFactory pokemonFactory;
-	@Mock private IPokedex pokedex;
-	@Mock private static IPokemonTrainerFactory trainerFactory;
-	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 	
-	Pokemon pokemon = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 56);
-	List<Pokemon> pokemonS = new ArrayList<Pokemon>();
+
+
+
+	@Mock private IPokedexFactory pokedexFactory;
+	@Mock private IPokedex pokedex;
+	@Mock private IPokemonTrainerFactory pokemonTrainerFactory;
+	@Mock public MockitoRule mockitoRule = MockitoJUnit.rule();
+
+	
 	
 	@Before
 	public void setUp() throws PokedexException {
-		
-		Mockito.when(pokemonFactory.createPokemon(0, 613, 64, 4000, 4)).thenReturn(new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 56));
-		
+		MockitoAnnotations.initMocks(this);
+		Mockito.when(pokemonTrainerFactory.createTrainer("Nasreddine", Team.MYSTIC,  pokedexFactory)).thenReturn(pokemoTrainer);
 	}
 	@Test 
 	public void testCreateTrainer() throws PokedexException {
