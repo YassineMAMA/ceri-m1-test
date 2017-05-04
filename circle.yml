@@ -11,7 +11,7 @@ dependencies:
     - rm google-chrome.deb
 test:
   override:
-    - mvn integration-test
+    - mvn ceri-m1-test
     - mvn jacoco:report
     - mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml -DprojectToken=$projectToken -DapiToken=$apiToken
 
