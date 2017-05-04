@@ -14,7 +14,7 @@ public interface Serializer {
 
     String rootPath = System.getProperty("user.home") + "/";
     
-/** création du dossier sil n'existe pas**/
+/*----création du dossier sil n'existe pas-----*/
     default void initPath(String Dname) {
    
         File dir = new File(rootPath, Dname);
@@ -24,14 +24,14 @@ public interface Serializer {
        }
 
     
-/** returner le nom de fichier */  
+/*--------returner le nom de fichier------ */  
     default String getFileName(String path, String name) {
     	
         return rootPath + path + name.toLowerCase() + ".json";
     }
     
 
-/**Vérifier si le dossier exisit */
+/*----------Vérifier si le dossier exisit-------- */
     default Boolean checkFile(String path, String name) {
     	
         File f = new File(this.getFileName(path, name));
@@ -39,7 +39,7 @@ public interface Serializer {
     }
 
 
-/**Convertir un objet en fichier json*/
+/*--------Convertir un objet en fichier json---------*/
     default void persistData(String filename, Object object) {
 
         try (FileWriter writer = new FileWriter(filename)) {
@@ -52,11 +52,11 @@ public interface Serializer {
     }
     
     
-/**enregistrer les données dans le fichier json*/
+/*--------enregistrer les données dans le fichier json------*/
     void saveData(Object object) throws IOException, PokedexException;
 
 
-/**charger les données à partir du fichier json */
+/*--------charger les données à partir du fichier json -------*/
     Object loadData(String name) throws FileNotFoundException, PokedexException;
 	
 }
