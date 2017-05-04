@@ -16,7 +16,8 @@ public interface IPokemonFactory {
 	 * @param dust Required dust for upgrading pokemon.
 	 * @param candy Required candy for upgrading pokemon.
 	 * @return Created pokemon instance.
+	 * @throws PokedexException 
 	 */
-	Pokemon createPokemon(int index, int cp, int hp, int dust, int candy);
+	Pokemon createPokemon(int index, int cp, int hp, int dust, int candy) throws PokedexException;
 	
 }
