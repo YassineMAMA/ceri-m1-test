@@ -9,3 +9,4 @@ general:
   branches:
     only:
       - master
+      - mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml -DprojectToken=$projectToken -DapiToken=$apiToken
