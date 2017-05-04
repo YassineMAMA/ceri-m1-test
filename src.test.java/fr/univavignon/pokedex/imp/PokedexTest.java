@@ -2,7 +2,6 @@ package fr.univavignon.pokedex.imp;
 
 import fr.univavignon.pokedex.api.PokedexException;
 import fr.univavignon.pokedex.api.Pokemon;
-import fr.univavignon.pokedex.api.PokemonComparators;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -21,8 +20,7 @@ public class PokedexTest {
     private static Pokedex pokD;
     private Pokemon pokM;
 
-
-    
+   
     @Before
     public void setUp() throws PokedexException {
 
