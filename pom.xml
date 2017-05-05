@@ -6,14 +6,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<artifactId>forkthemall</artifactId>
 	<name>Fork Them All</name>
 	<version>1.0.0</version>
-	
-	<developers>
-		<developer>
-			<name>YassineMAMA</name>
-			<email>yassine.mama@gmail.com</email>
-		</developer>
-	</developers>
-	
 
     <build>
 		<sourceDirectory>src/main/java</sourceDirectory>
@@ -82,4 +74,3 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		</dependency>
     </dependencies> 
 </project>
-	
