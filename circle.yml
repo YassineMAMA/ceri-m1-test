@@ -3,9 +3,6 @@ machine:
     version:
       oraclejdk8
 
-dependencies:
-  override:
-    - mvn clean
 
 general:
   branches:
@@ -14,7 +11,7 @@ general:
 
 test:
   override:
-    - mvn test
+  - mvn clean test
   post:
     - mvn jacoco:report
     - mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml -DprojectToken=$projectToken -DapiToken=$apiToken
